@@ -21,9 +21,17 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false
       },
-      teachers_list: {
-        type: Sequelize.STRING
+      school_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'schools',
+          key: 'id'
+        }
       }
+      // teachers_list: {
+      //  type: Sequelize.//STRING
+      //} MUITOS PRA MUITOS
       // schedule: {
       //   type: Sequelize.STRING,
       //   allowNull: false
@@ -32,5 +40,7 @@ module.exports = {
     });
   },
 
-  async down(queryInterface, Sequelize) {}
+  async down(queryInterface, Sequelize) {
+    return queryInterface.dropTable('classrooms');
+  }
 };

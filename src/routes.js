@@ -2,6 +2,7 @@ const express = require('express');
 const UserController = require('./controller/UserController');
 const SchoolController = require('./controller/SchoolController');
 const ClassroomController = require('./controller/ClassroomController');
+const TeacherController = require('./controller/TeacherController');
 
 const routes = express.Router();
 
@@ -26,5 +27,11 @@ routes.get('/classrooms/:id', ClassroomController.findById);
 routes.post('/classrooms', ClassroomController.create);
 routes.delete('/classrooms/:id', ClassroomController.delete);
 routes.put('/classrooms', ClassroomController.update);
+
+routes.get('/teachers', TeacherController.index);
+routes.get('/teachers/:id', TeacherController.findById);
+routes.post('/teachers', TeacherController.create);
+routes.delete('/teachers/:id', TeacherController.delete);
+routes.put('/teachers', TeacherController.update);
 
 module.exports = routes;

@@ -13,4 +13,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(routes);
 
-app.listen(3333);
+app.listen(3333, function () {
+  console.log('running in port 3333');
+});

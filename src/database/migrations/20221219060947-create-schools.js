@@ -20,7 +20,7 @@ module.exports = {
       state: {
         type: Sequelize.STRING,
         allowNull: false
-      },
+      }
       // symbol: {
       //   type: Sequelize.STRING,
       //   allowNull: false
@@ -28,5 +28,7 @@ module.exports = {
     });
   },
 
-  async down(queryInterface, Sequelize) {}
+  async down(queryInterface, Sequelize) {
+    return queryInterface.dropTable('schools');
+  }
 };

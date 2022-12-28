@@ -17,12 +17,12 @@ module.exports = {
   },
 
   async create(req, res) {
-    const { name, deskCapacity, isBlocked, teachersList } = req.body;
+    const { name, deskCapacity, isBlocked, schoolId } = req.body;
     const classroom = await Classroom.create({
       name,
       deskCapacity,
       isBlocked,
-      teachersList
+      schoolId
     });
     return res.json(classroom);
   },
@@ -38,13 +38,13 @@ module.exports = {
   },
 
   async update(req, res) {
-    const { id, name, deskCapacity, isBlocked, teachersList } = req.body;
+    const { id, name, deskCapacity, isBlocked, schoolId } = req.body;
     const classroom = await Classroom.update(
       {
         name,
         deskCapacity,
         isBlocked,
-        teachersList
+        schoolId
       },
       {
         where: {
