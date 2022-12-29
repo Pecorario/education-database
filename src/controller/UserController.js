@@ -37,14 +37,17 @@ module.exports = {
 
   async update(req, res) {
     const { id, name, password } = req.body;
-    const user = await User.update({
-      name,
-      password
-    }, {
-      where: {
-        id: id
+    const user = await User.update(
+      {
+        name,
+        password
+      },
+      {
+        where: {
+          id: id
+        }
       }
-    });
+    );
     return res.json(user);
-  },
+  }
 };

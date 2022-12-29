@@ -14,8 +14,14 @@ class TeacherClassroom extends Model {
     );
   }
   static associate(models) {
-    TeacherClassroom.belongsTo(models.Teacher, { foreignKey: 'teacherId' });
-    TeacherClassroom.belongsTo(models.Classroom, { foreignKey: 'classroomId' });
+    this.belongsTo(models.Teacher, {
+      targetKey: 'id',
+      foreignKey: 'teacher_id'
+    });
+    this.belongsTo(models.Classroom, {
+      targetKey: 'id',
+      foreignKey: 'classroom_id'
+    });
   }
 }
 

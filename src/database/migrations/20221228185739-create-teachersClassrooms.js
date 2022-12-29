@@ -2,14 +2,14 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.createTable('teachersClassrooms', {
+    return queryInterface.createTable('teacher_classrooms', {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
       },
-      teacherId: {
+      teacher_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -17,11 +17,10 @@ module.exports = {
           key: 'id'
         }
       },
-      classroomId: {
+      classroom_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          // WorkingDays hasMany Users n:n
           model: 'classrooms',
           key: 'id'
         }
@@ -30,6 +29,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    return queryInterface.dropTable('teachersClassrooms');
+    return queryInterface.dropTable('teacher_classrooms');
   }
 };

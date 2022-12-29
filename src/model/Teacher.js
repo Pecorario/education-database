@@ -13,9 +13,9 @@ class Teacher extends Model {
     );
   }
   static associate(models) {
-    Teacher.belongsToMany(models.Classroom, {
-      through: 'teachersClassrooms',
-      foreignKey: 'teacherId',
+    this.belongsToMany(models.Classroom, {
+      through: 'teacher_classrooms',
+      foreignKey: 'teacher_d',
       as: 'classrooms'
     });
   }

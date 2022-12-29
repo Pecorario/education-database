@@ -10,9 +10,9 @@ const TeacherClassroom = require('../model/TeacherClassroom');
 const connection = new Sequelize(dbConfig);
 
 User.init(connection);
-School.init(connection);
-Classroom.init(connection);
 Teacher.init(connection);
+Classroom.init(connection);
+School.init(connection);
 TeacherClassroom.init(connection);
 
 module.exports = connection;

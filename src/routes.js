@@ -6,10 +6,6 @@ const TeacherController = require('./controller/TeacherController');
 
 const routes = express.Router();
 
-routes.get('/', (req, res) => {
-  res.send('Olá mundo');
-});
-
 routes.get('/users', UserController.index);
 routes.get('/users/:id', UserController.findById);
 routes.post('/users', UserController.create);

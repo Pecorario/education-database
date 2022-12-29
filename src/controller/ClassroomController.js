@@ -1,8 +1,20 @@
 const Classroom = require('../model/Classroom');
+const TeacherClassroom = require('../model/TeacherClassroom');
 
 module.exports = {
   async index(req, res) {
-    const classroom = await Classroom.findAll();
+    const classroom = await Classroom.findAll({
+      include: [
+        {
+          model: TeacherClassroom,
+          as: 'teachers'
+          // attributes: ['classroomId'],
+          // through: {
+          //   attributes: []
+          // }
+        }
+      ]
+    });
     return res.json(classroom);
   },
 
@@ -17,14 +29,22 @@ module.exports = {
   },
 
   async create(req, res) {
-    const { name, deskCapacity, isBlocked, schoolId } = req.body;
+    const { name, deskCapacity, isBlocked, schoolId, teachers } = req.body;
     const classroom = await Classroom.create({
       name,
       deskCapacity,
       isBlocked,
       schoolId
     });
-    return res.json(classroom);
+
+    teachers.map(async teacher => {
+      await TeacherClassroom.create({
+        teacherId: teacher,
+        classroomId: classroom.dataValues.id
+      });
+    });
+
+    return res.status(201).send({ id: classroom.dataValues.id });
   },
 
   async delete(req, res) {
@@ -38,7 +58,7 @@ module.exports = {
   },
 
   async update(req, res) {
-    const { id, name, deskCapacity, isBlocked, schoolId } = req.body;
+    const { id, name, deskCapacity, isBlocked, schoolId, teachers } = req.body;
     const classroom = await Classroom.update(
       {
         name,
